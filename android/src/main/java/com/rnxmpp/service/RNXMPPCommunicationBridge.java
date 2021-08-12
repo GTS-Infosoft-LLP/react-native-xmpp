@@ -77,7 +77,7 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
         params.putString("_id", message.getStanzaId());
         params.putString("thread", message.getThread());
         params.putString("subject", message.getSubject());
-        params.putString("from", message.getFrom().toString());
+        params.putString("from", message.getFrom() != null ? message.getFrom().toString() : "");
         params.putString("src", message.toXML("").toString());
         if(message.getBody()!=null) {
             params.putString("body", message.getBody());
@@ -89,7 +89,7 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
                 ChatStateExtension extension= (ChatStateExtension) message.getExtension(ChatStateExtension.NAMESPACE);
                 ChatState state = extension.getChatState();
                 WritableMap paramStatus = Arguments.createMap();
-                paramStatus.putString("from", message.getFrom().toString());
+                paramStatus.putString("from", message.getFrom() != null ? message.getFrom().toString() : "");
                 paramStatus.putString("status", state.name());
 
                 sendEvent(reactContext, RNXMPP_TYPINGSTATUS, paramStatus);
@@ -115,7 +115,7 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
         params.putString("thread", message.getThread());
         params.putString("subject", message.getSubject());
         params.putString("body", message.getBody());
-        params.putString("from", message.getFrom().toString());
+        params.putString("from", message.getFrom() != null ? message.getFrom().toString() : "");
         params.putString("src", message.toXML("").toString());
         sendEvent(reactContext, RNXMPP_MESSAGE_CREATED, params);
     }
