@@ -150,7 +150,7 @@ public class XmppServiceSmackImpl implements XmppService,ChatMessageListener, Ch
         XMPPTCPConnectionConfiguration.Builder confBuilder = null;
         try {
 
-            InetAddress inetAddress = getInetAddressByName("mntto.com");
+            InetAddress inetAddress = getInetAddressByName(hostname);
             HostnameVerifier verifier = new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
